@@ -1,4 +1,8 @@
 {
   "name": "quest-tiledmap",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "main": "/dist/tiledmap.js",
+  "ignore": [
+    "node_modules"
+  ]
 }
