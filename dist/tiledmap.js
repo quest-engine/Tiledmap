@@ -524,7 +524,7 @@ Map.prototype.renderLayer = function (layer) {
       return Map;
     });
   } else if (typeof angular !== 'undefined') {
-    angular.module('quest.tiledmap').service('tiledMap', function () {
+    angular.module('quest.tiledmap', []).service('tiledMap', function () {
       return {
         create: function (w, h, tw) {
           return new Map(w, h, tw);
