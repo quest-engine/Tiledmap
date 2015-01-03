@@ -1,0 +1,8 @@
+{
+  "name": "quest-tiledmap",
+  "version": "0.0.1",
+  "description": "Tiled map image generator, part of quest-engine stack.",
+  "devDependencies": {
+    "gulp-wrap": "^0.5.0"
+  }
+}

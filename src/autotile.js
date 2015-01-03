@@ -289,16 +289,13 @@ function getCornerTileType(corner, near) {
 }
 
 Autotile = function (autotile, padd) {
-  this.red = autotile;
   this.padd = padd;
 
   this.name = autotile.name;
   this._id = autotile._id;
   this.src = autotile.src;
 
-  this.image = new Image();
-  this.image.onload = this.compile.bind(this);
-  this.image.src = this.src;
+  this.image = autotile;
 
   this.canvas = document.createElement('canvas');
   this.canvas.width = 32;
@@ -307,7 +304,7 @@ Autotile = function (autotile, padd) {
   this.ctx = this.canvas.getContext('2d');
 };
 
-Autotile.prototype.drawTile = function (ctx, xDest, yDest, tile) {
+Autotile.prototype.drawTile = function (ctx, tile, xDest, yDest) {
   ctx.drawImage(this.canvas, 0, tile * 32, 32, 32, xDest, yDest, 32, 32);
 };
 
