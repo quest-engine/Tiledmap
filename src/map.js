@@ -79,7 +79,5 @@ Map.prototype.renderLayer = function (layer) {
     }
   }
 
-  img.src = canvas.toDataURL('image/png');
-
-  return img;
+  return canvas;
 };

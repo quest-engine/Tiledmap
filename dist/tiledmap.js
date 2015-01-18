@@ -509,9 +509,7 @@ Map.prototype.renderLayer = function (layer) {
     }
   }
 
-  img.src = canvas.toDataURL('image/png');
-
-  return img;
+  return canvas;
 };
 
   // detect requirejs and define module if defined. Else check for commonjs
