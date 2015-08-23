@@ -355,69 +355,75 @@ function getIdOrNull(x, y, layer, size) {
   return layer[y * size.w + x];
 }
 
-/**
- * @description compile the given layer into a properly autotiled layer
- * @param layer {[Number]} the layer to process
- * @param size {Object} the map size
- * @param offset {Number} autotile offset in map autotiles
- * @return {[Number]} the compiled layer
- */
-compileLayer = function (layer, size, offset) {
+function isSameAutotile(tile, offset) {
+  if (tile >= 0) return false;
+
+  tile = -tile;
+  offset = Math.floor((tile - 1) / 256);
+
+  return offset === offset;
+}
+
+function getTile(x, y, layer, size) {
+  if (x < 0 || y < 0 || x >= size.w || y >= size.h) {
+    return null;
+  }
+
+  return layer[y * size.w + x];
+}
+
+var compileLayer = function (layer, size, offset) {
   var x = 0, y = 0, compiled  = [], sum;
+
 
   // calculate adjacent tiles flags
   for (; y < size.h; y += 1) {
     for (x = 0; x < size.w; x += 1) {
       // test if current tile corresponds to the current offset
-      if (getIdOrNull(x, y, layer, size) === offset) {
+      if (isSameAutotile(getTile(x, y, layer, size), offset)) {
         sum = 0;
 
         // top left
-        if (getIdOrNull(x - 1, y - 1, layer, size) === offset) {
+        if (isSameAutotile(getTile(x - 1, y - 1, layer, size), offset)) {
           sum += 1;
         }
 
         // top
-        if (getIdOrNull(x, y - 1, layer, size) === offset) {
+        if (isSameAutotile(getTile(x, y - 1, layer, size), offset)) {
           sum += 2;
         }
 
         // top right
-        if (getIdOrNull(x + 1, y - 1, layer, size) === offset) {
+        if (isSameAutotile(getTile(x + 1, y - 1, layer, size), offset)) {
           sum += 4;
         }
 
         // left
-        if (getIdOrNull(x - 1, y, layer, size) === offset) {
+        if (isSameAutotile(getTile(x - 1, y, layer, size), offset)) {
           sum += 8;
         }
 
         // right
-        if (getIdOrNull(x + 1, y, layer, size) === offset) {
+        if (isSameAutotile(getTile(x + 1, y, layer, size), offset)) {
           sum += 16;
         }
 
         // bottom left
-        if (getIdOrNull(x - 1, y + 1, layer, size) === offset) {
+        if (isSameAutotile(getTile(x - 1, y + 1, layer, size), offset)) {
           sum += 32;
         }
 
         // bottom
-        if (getIdOrNull(x, y + 1, layer, size) === offset) {
+        if (isSameAutotile(getTile(x, y + 1, layer, size), offset)) {
           sum += 64;
         }
 
         // bottom right
-        if (getIdOrNull(x + 1, y + 1, layer, size) === offset) {
+        if (isSameAutotile(getTile(x + 1, y + 1, layer, size), offset)) {
           sum += 128;
         }
-
-        compiled.push(sum + ((offset - 1) * 256) + 1);
-      } else {
-        compiled.push(0);
+        layer[y * size.w + x] = (-((offset) * 256 + sum + 1));
       }
     }
   }
-
-  return compiled;
 };

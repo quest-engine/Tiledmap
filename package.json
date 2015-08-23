@@ -1,6 +1,6 @@
 {
   "name": "quest-tiledmap",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "repository": "https://github.com/quest-engine/Tiledmap.git",
   "description": "Tiled map image generator, part of quest-engine stack.",
   "devDependencies": {
