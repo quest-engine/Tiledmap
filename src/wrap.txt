@@ -21,13 +21,25 @@
       return {
         create: function (w, h, tw) {
           return new Map(w, h, tw);
-        }
+        },
+        Map: Map,
+        Autotile: Autotile,
+        compileLayer: compileLayer
       };
     });
   } else if (typeof module !== 'undefined' && module.exports) {
-    module.exports = Map;
+    module.exports = {
+      Map: Map,
+      Autotile: Autotile,
+      compileLayer: compileLayer
+    };
+
     root.Map = Map;
+    root.Autotile = Autotile;
+    root.compileLayer = compileLayer;
   } else {
     root.Map = Map;
+    root.Autotile = Autotile;
+    root.compileLayer = compileLayer;
   }
 })(this);
