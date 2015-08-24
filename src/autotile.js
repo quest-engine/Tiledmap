@@ -359,9 +359,9 @@ function isSameAutotile(tile, offset) {
   if (tile >= 0) return false;
 
   tile = -tile;
-  offset = Math.floor((tile - 1) / 256);
+  var off = Math.floor((tile - 1) / 256);
 
-  return offset === offset;
+  return off === offset;
 }
 
 function getTile(x, y, layer, size) {
