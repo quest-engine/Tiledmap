@@ -1,4 +1,14 @@
+/**
+ * @module tiledmap
+ */
 
+/**
+ * @class TiledMap
+ * @constructor
+ * @param {Number} sizeX     Number of horizontal tiles.
+ * @param {Number} sizeY     Number of vertical tiles.
+ * @param {Number} tileWidth Width/Height of a signle tile.
+ */
 var Map = function (sizeX, sizeY, tileWidth) {
   this.size = {};
 
